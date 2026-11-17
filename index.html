@@ -45,58 +45,231 @@
         nav a {
             text-decoration: none;
             color: #555;
-            margin-left: 15px;
-            font-size: 0.9rem;
+            margin-left: 10px;
+            font-size: 0.85rem;
             font-weight: 600;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: var(--primary-pink);
         }
         .hero {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
             border-bottom: 2px solid #ffd1dc;
         }
         .hero h1 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .hero p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 20px;
-        }
-        .btn-create {
-            background-color: var(--primary-pink);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px var(--accent-glow);
-            transition: transform 0.2s;
-        }
-        .btn-create:active {
-            transform: scale(0.95);
+            margin-bottom: 15px;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             flex: 1;
+            width: 100%;
         }
         .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             color: #444;
             border-left: 4px solid var(--primary-pink);
             padding-left: 10px;
         }
+        /* Section Générateur de Texte */
+        .ai-generator-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+        .ai-generator-box select, .ai-generator-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 2px solid #ffd1dc;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .btn-action {
+            background-color: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .proposals-container {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .proposal-card {
+            background: #faf8f9;
+            border: 1px solid #e0d0d4;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+      align-items: center;
+            gap: 10px;
+        }
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickers Flamme - Déclare ta flamme en un clic</title>
+    <style>
+        :root {
+            --primary-pink: #ff6584;
+            --soft-bg: #fff0f3;
+            --card-bg: #ffffff;
+            --text-color: #2d2d2d;
+            --accent-glow: rgba(255, 101, 132, 0.4);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--soft-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            letter-spacing: 0.5px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
+            border-bottom: 2px solid #ffd1dc;
+        }
+        .hero h1 {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .hero p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            width: 100%;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #444;
+            border-left: 4px solid var(--primary-pink);
+            padding-left: 10px;
+        }
+        /* Section Générateur de Texte */
+        .ai-generator-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+        .ai-generator-box select, .ai-generator-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 2px solid #ffd1dc;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .btn-action {
+            background-color: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .proposals-container {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .proposal-card {
+            background: #faf8f9;
+            border: 1px solid #e0d0d4;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .proposal-text {
+            font-size: 0.85rem;
+            color: #444;
+            flex: 1;
+        }
+        .btn-copy {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-copy.copied {
+            background: #28a745;
+        }
+
+        /* Grille des vidéos */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -107,12 +280,8 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s;
             display: flex;
             flex-direction: column;
-        }
-        .card-item:hover {
-            transform: translateY(-5px);
         }
         .card-video-container {
             width: 100%;
@@ -140,7 +309,7 @@
             color: #777;
         }
         .btn-select {
-            margin-top: 10px;
+            margin-top: 5px;
             background: transparent;
             border: 2px solid var(--primary-pink);
             color: var(--primary-pink);
@@ -148,11 +317,6 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
-        .btn-select:hover {
-            background: var(--primary-pink);
-            color: white;
         }
         footer {
             text-align: center;
@@ -171,68 +335,71 @@
         <div class="logo">Stickers Flamme</div>
         <nav>
             <a href="#accueil">Accueil</a>
-            <a href="#anniversaire">Anniversaire</a>
-            <a href="#amour">Amour</a>
-            <a href="#declaration">Déclaration</a>
+            <a href="#generateur">Textes IA</a>
+            <a href="#modeles">Modèles</a>
         </nav>
     </header>
 
     <div class="hero" id="accueil">
         <h1>Déclare ta flamme en un clic</h1>
-        <p>Crée des cartes animées uniques à envoyer sur WhatsApp</p>
-        <button class="btn-create" onclick="alert('Module de création bientôt actif !')">Créer ma carte</button>
+        <p>Génère ton texte d'amour et choisis ta carte animée pour WhatsApp</p>
     </div>
 
     <div class="container">
-        <h2 class="section-title">Modèles Populaires</h2>
+        
+        <!-- SECTION GENERATEUR DE TEXTE -->
+        <div class="ai-generator-box" id="generateur">
+            <h2 class="section-title" style="border:none; padding:0; margin-bottom:10px;">Générateur de Texte Magique</h2>
+            <select id="occase">
+                <option value="anniversaire-copine">🎂 Anniversaire pour ma copine</option>
+                <option value="amour-declaration">❤️ Déclaration d'amour intense</option>
+                <option value="pote-rigolo">😂 Joyeux anniversaire pote (rigolo)</option>
+            </select>
+            <button class="btn-action" onclick="genererTextes()">Générer 3 propositions</button>
+
+            <div class="proposals-container" id="resultats-propositions">
+                <!-- Les 3 textes apparaîtront ici -->
+            </div>
+        </div>
+
+        <!-- SECTION MODELES DE VIDEOS -->
+        <h2 class="section-title" id="modeles">Choisis ta Vidéo Animée</h2>
         
         <div class="cards-grid">
             <!-- Modèle 1 -->
             <div class="card-item">
                 <div class="card-video-container">
-                    <!-- Mets le lien de ta vidéo en arrière-plan sans son (autoplay muted loop playsinline) -->
-                    <video autoplay muted loop playsinline src="TA_VIDEO_1.mp4"></video>
+                    <!-- Mets ici le nom exact de ta vidéo uploadée sur GitHub, ex: video1.mp4 -->
+                    <video autoplay muted loop playsinline src="video1.mp4"></video>
                 </div>
                 <div class="card-info">
                     <h3>Le Livre Romantique</h3>
                     <p>Des pages qui se tournent en 3D avec une lettre secrète.</p>
-                    <button class="btn-select" onclick="alert('Modèle sélectionné : Le Livre Romantique')">Choisir ce modèle</button>
+                    <button class="btn-select" onclick="alerteModele('Le Livre Romantique')">Utiliser ce modèle</button>
                 </div>
             </div>
 
             <!-- Modèle 2 -->
             <div class="card-item">
                 <div class="card-video-container">
-                    <video autoplay muted loop playsinline src="TA_VIDEO_2.mp4"></video>
+                    <video autoplay muted loop playsinline src="video2.mp4"></video>
                 </div>
                 <div class="card-info">
                     <h3>L'Enveloppe Anniversaire</h3>
                     <p>Enveloppe rouge à cœur doré, gâteau et ballons magiques.</p>
-                    <button class="btn-select" onclick="alert('Modèle sélectionné : Enveloppe Anniversaire')">Choisir ce modèle</button>
+                    <button class="btn-select" onclick="alerteModele('L Enveloppe Anniversaire')">Utiliser ce modèle</button>
                 </div>
             </div>
 
             <!-- Modèle 3 -->
             <div class="card-item">
                 <div class="card-video-container">
-                    <video autoplay muted loop playsinline src="TA_VIDEO_3.mp4"></video>
+                    <video autoplay muted loop playsinline src="video3.mp4"></video>
                 </div>
                 <div class="card-info">
                     <h3>Le Coffret Cadeau 3D</h3>
                     <p>Boîte cadeau qui s'ouvre sur un bouquet de roses flottantes.</p>
-                    <button class="btn-select" onclick="alert('Modèle sélectionné : Coffret Cadeau 3D')">Choisir ce modèle</button>
-                </div>
-            </div>
-
-            <!-- Modèle 4 -->
-            <div class="card-item">
-                <div class="card-video-container">
-                    <video autoplay muted loop playsinline src="TA_VIDEO_4.mp4"></video>
-                </div>
-                <div class="card-info">
-                    <h3>La Flèche de Cupidon</h3>
-                    <p>Un tir de flèche magique qui explose en une pluie de cœurs.</p>
-                    <button class="btn-select" onclick="alert('Modèle sélectionné : Flèche de Cupidon')">Choisir ce modèle</button>
+                    <button class="btn-select" onclick="alerteModele('Le Coffret Cadeau 3D')">Utiliser ce modèle</button>
                 </div>
             </div>
         </div>
@@ -240,7 +407,167 @@
 
     <footer>
         &copy; 2026 Stickers Flamme - Tous droits réservés.
-    </div>
+    </footer>
 
+    <script>
+        function genererTextes() {
+            const occase = document.getElementById('occase').value;
+            const container = document.getElementById('resultats-propositions');
+            
+            let texts = [];
+            if(occase === 'anniversaire-copine') {
+                texts = [
+                    "Joyeux anniversaire à la reine de mon cœur ! Que cette journée soit aussi douce et lumineuse que ton sourire. ❤️",
+                    "Mon amour, un joyeux anniversaire ! Merci d'illuminer ma vie chaque jour un peu plus. Je t'aime fort ✨",
+                    "Joyeux anniversaire à celle qui fait battre mon cœur à 100 à l'heure. Profite bien de ta journée mon ange ! 🌹"
+                ];
+            } else if(occase === 'amour-declaration') {
+                texts = [
+                    "Depuis que tu es entré(e) dans ma vie, tout a pris un nouveau sens. Je t'aime plus que les mots ne peuvent le dire. 💖",
+                    "T'écrire ce petit mot pour te rappeler à quel point tu comptes pour moi. Tu es mon évidence. 🔥",
+                    "Mon cœur t'appartient, aujourd'hui et pour longtemps. Une simple déclaration pour te dire je t'aime. 💌"
+                ];
+            } else {
+                texts = [
+                    "Joyeux anniversaire mon reuf ! Un年の de plus au compteur, t'es toujours aussi fou ! 🎂",
+                    "Bon anniversaire gros ! Santé, bonheur et beaucoup de cash cette année ! 🥂",
+                    "Joyeux anniversaire ! Heureusement que t'es là pour nous faire rire (ou pleurer). Passe une excellente journée ! 😂"
+                ];
+            }
+
+            container.innerHTML = '';
+            texts.forEach((t, index) => {
+                const div = document.createElement('div');
+                div.className = 'proposal-card';
+                div.innerHTML = `
+                    <span class="proposal-text" id="txt-${index}">${t}</span>
+                    <button class="btn-copy" onclick="copierTexte('txt-${index}', this)">Copier</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function copierTexte(id, btn) {
+            const texte = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texte).then(() => {
+                btn.innerText = "Copié ! ✅";
+                btn.classList.add("copied");
+                setTimeout(() => {
+                    btn.innerText = "Copier";
+                    btn.classList.remove("copied");
+                }, 2000);
+            });
+        }
+
+        function alerteModele(nom) {
+            alert("Modèle choisi : " + nom + " ! Pense à uploader ta vidéo sur GitHub avec le bon nom.");
+        }
+    </script>
 </body>
 </html>
+￼Enter    .proposal-text {
+            font-size: 0.85rem;
+            color: #444;
+            flex: 1;
+        }
+        .btn-copy {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-copy.copied {
+            background: #28a745;
+        }
+
+        /* Grille des vidéos */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+        .card-video-container {
+            width: 100%;
+            height: 180px;
+            background: #000;
+            position: relative;
+        }
+        .card-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .card-info h3 {
+            font-size: 1.05rem;
+            color: #333;
+        }
+        .card-info p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        .btn-select {
+            margin-top: 5px;
+            background: transparent;
+            border: 2px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #888;
+            background: #fff;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Stickers Flamme</div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#generateur">Textes IA</a>
+            <a href="#modeles">Modèles</a>
+        </nav>
+    </header>
+
+    <div class="hero" id="accueil">
+        <h1>Déclare ta flamme en un clic</h1>
+        <p>Génère ton texte d'amour et choisis ta carte animée pour WhatsApp</p>
+    </div>
+
+    <div class="container">
+        
+        <!-- SECTION GENERATEUR DE TEXTE -->
+        <div class="ai-generator-box" id="generateur">
+            <h2 class="section-title" style="border:none; padding:0; margin-bottom:10px;">Générateur de Texte Magique</h2>
+            <select id="occase">
+                <option value="anniversaire-copine">🎂 Anniversaire pour ma copine</option>
+                <option value="amour-declaration">❤️ Déclaration d'amour intense</option>
+                <option value="pote-rigolo">😂 Joyeux anniversaire pote (rigolo)</option>
+            </select>
+            <button class="btn-action" onclick="genererTextes()">Générer 3 propositions</button>
